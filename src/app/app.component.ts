@@ -21,6 +21,7 @@ export class AppComponent {
         this.userService.getUsers().subscribe(
           (data) => { // Success
             this.users = data['results'];
+            this.usuariosFiltrados = this.users;
             //this.filtrarPorNombre();
           },
           (error) => {
