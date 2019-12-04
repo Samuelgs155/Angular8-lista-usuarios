@@ -1,10 +1,38 @@
 import { Component } from '@angular/core';
 
+import { UserService } from './user.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app-rest';
+
+  title = 'App-rest-service';
+  users: any[] = [];
+  usuariosFiltrados: any[] = [];
+
+
+  constructor(protected userService: UserService) {
+    }
+
+    ngOnInit() {
+        this.userService.getUsers().subscribe(
+          (data) => { // Success
+            this.users = data['results'];
+            //this.filtrarPorNombre();
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+      }
+
+    filtrarPorNombre(filterVal: any) {
+      console.log(filterVal);
+      //this.usuariosFiltrados = this.users.filter(user => user.name.first === 'Caroline');
+      this.usuariosFiltrados = this.users.filter(user => user.gender == filterVal);
+      console.log(this.usuariosFiltrados);
+    }
 }
