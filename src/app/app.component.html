@@ -8,15 +8,14 @@
 </div>
 <div class="container">
   <div class="row">
-    <select (change)="filtrarPorNombre($event.target.value)">
+    <select (change)="filterByName($event.target.value)">
       <option value="all">All</option>
       <option value="male">Male</option>
       <option value="female">Female</option>
     </select>
   </div>
 </div>
-<!-- <div *ngFor='let user of users'> -->
-<div *ngFor='let user of usuariosFiltrados'>
+<div *ngFor='let user of FilteredUsers'>
     <img [src]="user.picture.medium">
     <h2>{{ user.name.first | uppercase }}</h2>
     <p>{{ user.email }}</p>

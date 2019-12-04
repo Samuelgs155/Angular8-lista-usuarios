@@ -11,7 +11,7 @@ export class AppComponent {
 
   title = 'App-rest-service';
   users: any[] = [];
-  usuariosFiltrados: any[] = [];
+  FilteredUsers: any[] = [];
 
 
   constructor(protected userService: UserService) {
@@ -19,10 +19,9 @@ export class AppComponent {
 
     ngOnInit() {
         this.userService.getUsers().subscribe(
-          (data) => { // Success
+          (data) => {
             this.users = data['results'];
-            this.usuariosFiltrados = this.users;
-            //this.filtrarPorNombre();
+            this.FilteredUsers = this.users;
           },
           (error) => {
             console.error(error);
@@ -30,13 +29,13 @@ export class AppComponent {
         );
       }
 
-    filtrarPorNombre(filterVal: any) {
+    filterByName(filterVal: any) {
       console.log(filterVal);
       if(filterVal == 'all') {
-        this.usuariosFiltrados = this.users;
+        this.FilteredUsers = this.users;
       } else {
-        this.usuariosFiltrados = this.users.filter(user => user.gender == filterVal);
+        this.FilteredUsers = this.users.filter(user => user.gender == filterVal);
       }
-      console.log(this.usuariosFiltrados);
+      console.log(this.FilteredUsers);
     }
 }
