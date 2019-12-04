@@ -32,8 +32,11 @@ export class AppComponent {
 
     filtrarPorNombre(filterVal: any) {
       console.log(filterVal);
-      //this.usuariosFiltrados = this.users.filter(user => user.name.first === 'Caroline');
-      this.usuariosFiltrados = this.users.filter(user => user.gender == filterVal);
+      if(filterVal == 'all') {
+        this.usuariosFiltrados = this.users;
+      } else {
+        this.usuariosFiltrados = this.users.filter(user => user.gender == filterVal);
+      }
       console.log(this.usuariosFiltrados);
     }
 }
